@@ -10,7 +10,7 @@ func main() {
 	r.GET("/", func(context *gin.Context) {
 		context.JSON(http.StatusOK, gin.H{
 			"status":  true,
-			"message": "update app baru dicoba 2",
+			"message": "update app baru dicoba 3",
 			"data":    []string{},
 		})
 	})
