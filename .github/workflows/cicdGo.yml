@@ -1,4 +1,4 @@
-name: golang-vm
+name: golang vm
 
 on:
   push:
