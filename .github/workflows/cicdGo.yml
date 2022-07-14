@@ -18,4 +18,4 @@ jobs:
           user: ${{ secrets.USERNAME }}
           pass: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
-          command: cd /var/www/go-vm && git pull origin master && go build main.go && service go restart
+          command: cd /var/www/go-vm && git pull origin master && go build main.go && systemctl restart go
