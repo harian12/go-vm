@@ -1,24 +1,21 @@
-name: golang-vm
-
+name: Deploy Prod Demo
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
   pull_request:
-    branches: [ master ]
-
+    branches:
+      - master
 jobs:
-  go-service:
+  build:
+    name: Deployment Demo
     runs-on: ubuntu-latest
     steps:
-      name: Login & Update Staging
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        port: ${{ secrets.PORT }}
-        script: |
-          cd /var/www/go-vm
-          git pull origin master
-          go build main.go
-          systemctl restart go
+      - name: SSH Remote
+        uses: fifsky/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          user: ${{ secrets.USERNAME }}
+          pass: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          command: cd /var/www/go-vm && git pull origin master && go build main.go && service go restart
